@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Sign-in complete</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main style="max-width:640px;margin:48px auto;padding:0 16px;font-family:system-ui,sans-serif">
+<h1>Almost done</h1>
+<p id="msg">Copy this page's full address, paste it into the file the terminal names (<code>paste_redirect.txt</code>), and save. Then you can close this tab.</p>
+<button id="copy" style="padding:10px 16px;font-size:16px">Copy address</button>
+<p id="ok" style="color:green"></p>
+<p style="color:#666;font-size:14px">This page runs entirely in your browser. It doesn't send or store anything. The code in the address is single-use and expires within minutes.</p>
+</main>
+<script>
+var q=new URLSearchParams(location.search);
+if(q.get('error')){document.getElementById('msg').textContent='Sign-in was cancelled or failed: '+(q.get('error_description')||q.get('error'));}
+document.getElementById('copy').onclick=function(){navigator.clipboard.writeText(location.href).then(function(){document.getElementById('ok').textContent='Copied. Paste it into paste_redirect.txt and save.';});};
+</script>
+</body>
+</html>
